@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chop Life – Win Millions in Cash!</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #F5C518;
+    --gold-dark: #D4A017;
+    --green: #1A7A3C;
+    --green-dark: #145A2C;
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --off-white: #FFF9E6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px 60px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,197,24,0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(26,122,60,0.18) 0%, transparent 60%),
+      var(--black);
+    z-index: 0;
+  }
+
+  /* animated orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.25;
+    animation: drift 8s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+  .orb1 { width: 260px; height: 260px; background: var(--gold); top: -60px; left: -60px; animation-delay: 0s; }
+  .orb2 { width: 200px; height: 200px; background: var(--green); bottom: 80px; right: -40px; animation-delay: 3s; }
+  .orb3 { width: 140px; height: 140px; background: #FF6B35; top: 40%; left: 10%; animation-delay: 5s; }
+
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(20px, 30px) scale(1.1); }
+  }
+
+  .hero > * { position: relative; z-index: 1; }
+
+  /* top bar */
+  .topbar {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0 0;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-circle {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: -0.5px;
+  }
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: -0.3px;
+  }
+
+  .badge-mtn {
+    background: #FFCC00;
+    color: #000;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* headline area */
+  .headline-block {
+    margin-top: 32px;
+    text-align: center;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    background: rgba(245,197,24,0.15);
+    border: 1px solid rgba(245,197,24,0.4);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 10vw, 54px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    animation: fadeDown 0.7s ease 0.1s both;
+  }
+
+  h1 .highlight {
+    color: var(--gold);
+    display: inline-block;
+    position: relative;
+  }
+  h1 .highlight::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .sub {
+    margin-top: 16px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    animation: fadeDown 0.7s ease 0.2s both;
+  }
+
+  /* prize pill row */
+  .prize-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    animation: fadeDown 0.7s ease 0.3s both;
+  }
+
+  .prize-pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 30px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .prize-pill .icon {
+    font-size: 18px;
+  }
+  .prize-pill .label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+  }
+  .prize-pill .value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* trial card */
+  .trial-card {
+    margin-top: 32px;
+    width: 100%;
+    max-width: 380px;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    padding: 24px 22px 20px;
+    text-align: center;
+    animation: fadeUp 0.7s ease 0.4s both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .trial-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: rgba(245,197,24,0.12);
+    border-radius: 50%;
+  }
+
+  .trial-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245,197,24,0.5); }
+    50%       { box-shadow: 0 0 0 10px rgba(245,197,24,0); }
+  }
+
+  .trial-card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--white);
+  }
+  .trial-card h2 span { color: var(--gold); }
+
+  .trial-card p {
+    margin-top: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  .trial-price {
+    margin-top: 16px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 6px;
+  }
+  .trial-price .amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  .trial-price .per {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* CTA button */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 16px;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+  }
+
+  .cta-btn:active { transform: scale(0.97); }
+  .cta-btn:hover  { background: #FFDA2E; }
+
+  .cta-sub {
+    margin-top: 8px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .section {
+    padding: 52px 20px 40px;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .section-title span { color: var(--gold); }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 18px 16px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .step.visible { opacity: 1; transform: translateX(0); }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .step-body strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .step-body p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  /* ── FEATURES GRID ── */
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 20px 52px;
+  }
+
+  .feat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 18px 14px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .feat.visible { opacity: 1; transform: translateY(0); }
+
+  .feat-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .feat strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .feat p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.45;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: linear-gradient(135deg, rgba(245,197,24,0.1) 0%, rgba(26,122,60,0.1) 100%);
+    border-top: 1px solid rgba(245,197,24,0.2);
+    padding: 48px 20px 60px;
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .final-cta h2 span { color: var(--gold); }
+  .final-cta p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .final-btn {
+    display: inline-block;
+    max-width: 340px;
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    animation: bounce 2s ease infinite;
+    transition: background 0.15s;
+  }
+  .final-btn:hover { background: #FFDA2E; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-5px); }
+  }
+
+  .disclaimer {
+    margin-top: 20px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.6;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* countdown */
+  .countdown-bar {
+    margin-top: 20px;
+    max-width: 380px;
+    width: 100%;
+    animation: fadeDown 0.7s ease 0.5s both;
+  }
+  .countdown-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .countdown-digits {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .digit-block {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 8px 14px;
+    text-align: center;
+  }
+  .digit-block .num {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .digit-block .unit {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ticker */
+  .ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: var(--gold);
+    padding: 10px 0;
+    position: relative;
+  }
+  .ticker {
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+    animation: ticker 18s linear infinite;
+    width: max-content;
+  }
+  .ticker span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--black);
+    letter-spacing: 0.3px;
+  }
+  .ticker span::before { content: '★ '; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>Win Millions in Cash</span>
+    <span>Daily Lottery Draws</span>
+    <span>Trivia Challenges</span>
+    <span>₦100/day Only</span>
+    <span>Try Free for 1 Day</span>
+    <span>MTN Powered</span>
+    <span>Win Millions in Cash</span>
+    <span>Daily Lottery Draws</span>
+    <span>Trivia Challenges</span>
+    <span>₦100/day Only</span>
+    <span>Try Free for 1 Day</span>
+    <span>MTN Powered</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="topbar">
+    <div class="logo">
+      <div class="logo-circle">CHOP</div>
+      <span class="logo-text">Chop Life</span>
+    </div>
+    <span class="badge-mtn">MTN</span>
+  </div>
+
+  <div class="headline-block">
+    <span class="eyebrow">🇳🇬 Nigeria's Hottest Reward Platform</span>
+    <h1>
+      Play. Win.<br>
+      <span class="highlight">Chop Life.</span>
+    </h1>
+    <p class="sub">Join millions of Nigerians winning cash daily through<br>Lottery draws & Trivia events — powered by MTN.</p>
+  </div>
+
+  <div class="prize-row">
+    <div class="prize-pill">
+      <span class="icon">🏆</span>
+      <span class="label">Top Prize</span>
+      <span class="value">₦Millions</span>
+    </div>
+    <div class="prize-pill">
+      <span class="icon">🎯</span>
+      <span class="label">Daily Draws</span>
+      <span class="value">Every Day</span>
+    </div>
+    <div class="prize-pill">
+      <span class="icon">⚡</span>
+      <span class="label">Instant Win</span>
+      <span class="value">Real Cash</span>
+    </div>
+  </div>
+
+  <!-- TRIAL CARD -->
+  <div class="trial-card">
+    <span class="trial-badge">🎁 FREE TRIAL – 1 DAY</span>
+    <h2>Try It for <span>Free</span> Today</h2>
+    <p>Get full access to all Lottery & Trivia events on your first day — completely free.</p>
+    <div class="trial-price">
+      <span class="amount">₦100</span>
+      <span class="per">/ day after trial</span>
+    </div>
+    <a id="main-cta" href="#" class="cta-btn">🚀 Start My Free Day Now</a>
+    <p class="cta-sub">Charged via MTN · Cancel anytime · No hidden fees</p>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-bar">
+    <p class="countdown-label">⏳ Today's draw closes in</p>
+    <div class="countdown-digits">
+      <div class="digit-block"><span class="num" id="cd-h">00</span><span class="unit">hrs</span></div>
+      <div class="digit-block"><span class="num" id="cd-m">00</span><span class="unit">min</span></div>
+      <div class="digit-block"><span class="num" id="cd-s">00</span><span class="unit">sec</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <h2 class="section-title">How it <span>Works</span></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>Subscribe with Your MTN Number</strong>
+        <p>Enter your phone number and verify via SMS. Takes less than 60 seconds.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>Join Daily Lottery & Trivia Events</strong>
+        <p>Get access to draws and trivia challenges with real cash prizes every single day.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>Win & Cash Out</strong>
+        <p>Winners are paid directly. Millions have been won already — you could be next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feat">
+    <div class="feat-icon">🎰</div>
+    <strong>Daily Lottery</strong>
+    <p>Multiple draws every day with growing jackpots.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🧠</div>
+    <strong>Trivia Events</strong>
+    <p>Answer questions, beat others, win real money.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">💰</div>
+    <strong>Real Cash Prizes</strong>
+    <p>Not points. Not vouchers. Actual naira payouts.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🔒</div>
+    <strong>Secure & Legit</strong>
+    <p>Official MTN VAS service — fully licensed.</p>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Don't Miss Today's<br><span>Winning Draw</span></h2>
+  <p>Your first day is completely free. You have nothing to lose<br>and millions to gain.</p>
+  <a id="final-cta-btn" href="#" class="final-btn">🏆 Claim My Free Trial</a>
+  <p class="disclaimer">
+    After your free day, you'll be charged ₦100/day or ₦200/week depending on your selected plan. You may cancel at any time. This is a legitimate MTN Value Added Service (VAS). Standard SMS rates may apply.
+  </p>
+</div>
+
+<script>
+  // ── Destination URL – replace with real affiliate link ──
+  const OFFER_URL = 'https://tmpkckp.bid/cl/3443ba096243afaf'; // ← swap this
+
+  document.getElementById('main-cta').href = OFFER_URL;
+  document.getElementById('final-cta-btn').href = OFFER_URL;
+
+  // ── Countdown to midnight ──
+  function updateCountdown() {
+    const now = new Date();
+    const midnight = new Date();
+    midnight.setHours(24, 0, 0, 0);
+    let diff = Math.floor((midnight - now) / 1000);
+    const h = Math.floor(diff / 3600); diff %= 3600;
+    const m = Math.floor(diff / 60);
+    const s = diff % 60;
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 120);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.step, .feat').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
