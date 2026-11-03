@@ -1,47 +1,112 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Complete Referrer Stripping -->
     <meta name="referrer" content="no-referrer">
     <title>Redirecting...</title>
+
     <style>
-        body { background: #0f172a; color: #f8fafc; font-family: system-ui, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .spinner { border: 3px solid #334155; border-top: 3px solid #38bdf8; border-radius: 50%; width: 28px; height: 28px; animation: spin .6s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .spinner {
+            border: 3px solid #334155;
+            border-top: 3px solid #38bdf8;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            animation: spin .6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
+
 <body>
     <div class="spinner"></div>
 
     <script>
-        (function() {
-            // Global P2 Parameter (Update here whenever campaign changes)
-            const P2_VALUE = 1580399;
+    (() => {
+        "use strict";
 
-            const baseUrl = "https://rykoevf.com/cl/86ac340f20ca7b56";
-            const source = "pushhouse";
-            const sites = [
-                "1297682519", "1354860888", "1552000468", "1562093884", 
-                "1564963174", "1565311781", "1569561528", "1575382032", 
-                "1575382304", "1576820209", "1576922893", "1577068990", 
-                "1577476129", "1577786160", "1578298421", "1578298805", 
-                "1580049400", "1586019966"
-            ];
+        // Campaign configuration
+        const P2_VALUE = "1580399";
+        const BASE_URL = "https://rykoevf.com/cl/86ac340f20ca7b56";
+        const SOURCE = "pushhouse";
 
-            // Fast inline UUID v7 token generator matching 01a19e... pattern
-            const p1 = '01a19e' + 'xxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                const r = Math.random() * 16 | 0;
-                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-            });
+        const SITES = [
+            "1297682519", "1354860888", "1552000468",
+            "1562093884", "1564963174", "1565311781",
+            "1569561528", "1575382032", "1575382304",
+            "1576820209", "1576922893", "1577068990",
+            "1577476129", "1577786160", "1578298421",
+            "1578298805", "1580049400", "1586019966"
+        ];
 
-            // Pick random Site ID from JSON array
-            const randomSite = sites[Math.floor(Math.random() * sites.length)];
+        // Generate a proper UUID version 7
+        function generateUUIDv7() {
+            const bytes = new Uint8Array(16);
+            crypto.getRandomValues(bytes);
 
-            // Instant redirect (No delay, no referrer)
-            window.location.replace(`${baseUrl}?p1=${p1}&p2=${P2_VALUE}&source=${source}&site=${randomSite}`);
-        })();
+            const timestamp = Date.now();
+
+            // Insert 48-bit Unix timestamp (milliseconds)
+            for (let i = 5; i >= 0; i--) {
+                bytes[i] = Math.floor(
+                    timestamp / (256 ** (5 - i))
+                ) & 0xff;
+            }
+
+            // Set UUID version 7
+            bytes[6] = (bytes[6] & 0x0f) | 0x70;
+
+            // Set RFC 4122 variant
+            bytes[8] = (bytes[8] & 0x3f) | 0x80;
+
+            const hex = Array.from(bytes, b =>
+                b.toString(16).padStart(2, "0")
+            ).join("");
+
+            return [
+                hex.slice(0, 8),
+                hex.slice(8, 12),
+                hex.slice(12, 16),
+                hex.slice(16, 20),
+                hex.slice(20)
+            ].join("-");
+        }
+
+        // Generate unique click ID
+        const p1 = generateUUIDv7();
+
+        // Select a random Site ID
+        const randomSite =
+            SITES[Math.floor(Math.random() * SITES.length)];
+
+        // Construct destination URL
+        const destination = new URL(BASE_URL);
+
+        destination.searchParams.set("p1", p1);
+        destination.searchParams.set("p2", P2_VALUE);
+        destination.searchParams.set("source", SOURCE);
+        destination.searchParams.set("site", randomSite);
+
+        // Redirect immediately
+        window.location.replace(destination.toString());
+
+    })();
     </script>
 </body>
 </html>
